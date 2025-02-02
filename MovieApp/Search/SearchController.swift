@@ -161,7 +161,6 @@ extension SearchController: UICollectionViewDelegateFlowLayout, UICollectionView
         guard let modelId = viewModel.movieModelId(index: indexPath.item) else { return }
         let controller = MovieDetailsController(viewModelId: modelId)
         navigationController?.show(controller, sender: nil)
-//        viewModel.didSelectMovie(index: indexPath.item)
     }
 
 }

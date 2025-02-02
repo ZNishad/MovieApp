@@ -9,7 +9,7 @@ import Foundation
 
 class MovieDetailsViewModel {
 
-    var movieDetailsModel: MovieDetailsModel?
+    var movieDetails: MovieDetailsModel?
 
     enum ViewState {
         case loading
@@ -28,7 +28,7 @@ class MovieDetailsViewModel {
             switch response {
             case .success(let model):
                 DispatchQueue.main.async {
-                    self.movieDetailsModel = model
+                    self.movieDetails = model
                     self.callback?(.reloadData)
                 }
             case .error(let model):

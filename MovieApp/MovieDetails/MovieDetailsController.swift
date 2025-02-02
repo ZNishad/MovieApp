@@ -9,7 +9,7 @@ import UIKit
 
 class MovieDetailsController: UIViewController {
 
-    private var movieId: Int = 0
+    private let movieId: Int
 
     private let viewModel = MovieDetailsViewModel()
 
@@ -237,15 +237,15 @@ class MovieDetailsController: UIViewController {
     }
 
     func updateUI() {
-        backdropImageView.setImage(urlString: viewModel.movieDetailsModel?.backdropFullPath)
-        posterImageView.setImage(urlString: viewModel.movieDetailsModel?.posterFullPath)
-        movieName.text = viewModel.movieDetailsModel?.originalTitle
-        let roundedRate = Int(((viewModel.movieDetailsModel?.voteAverage ?? 0.0)*10).rounded())
+        backdropImageView.setImage(urlString: viewModel.movieDetails?.backdropFullPath)
+        posterImageView.setImage(urlString: viewModel.movieDetails?.posterFullPath)
+        movieName.text = viewModel.movieDetails?.originalTitle
+        let roundedRate = Int(((viewModel.movieDetails?.voteAverage ?? 0.0)*10).rounded())
         rateCount.text = "\(Double(roundedRate)/10)"
-        dateLabel.text = String(viewModel.movieDetailsModel?.releaseDate?.prefix(4) ?? "")
-        durationLabel.text = "\(viewModel.movieDetailsModel?.runtime ?? 139) minutes"
-        genreLabel.text = viewModel.movieDetailsModel?.genres?.first?.name ?? "N/A"
-        aboutMovie.text = viewModel.movieDetailsModel?.overview ?? ""
+        dateLabel.text = String(viewModel.movieDetails?.releaseDate?.prefix(4) ?? "")
+        durationLabel.text = "\(viewModel.movieDetails?.runtime ?? 139) minutes"
+        genreLabel.text = viewModel.movieDetails?.genres?.first?.name ?? "N/A"
+        aboutMovie.text = viewModel.movieDetails?.overview ?? ""
     }
 
     private func setupCallback() {

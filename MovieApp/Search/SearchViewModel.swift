@@ -10,6 +10,7 @@ import Foundation
 class SearchViewModel {
     private var page: Int = 0
     private var movieList: [MovieModel] = []
+    private var movieDetails: MovieDetailsModel?
 
     enum ViewState {
         case loading
@@ -52,9 +53,5 @@ class SearchViewModel {
                 }
             }
         })
-    }
-
-    func getMovieDetails(index: Int) {
-
     }
 }
