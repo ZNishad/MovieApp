@@ -186,7 +186,9 @@ class MovieDetailsController: UIViewController {
     }
 
     func setupUI() {
-        view.addSubviews(backdropImageView, posterImageView, movieName, blurEffectView, detailsBackView, aboutMovieLabel, aboutMovie)
+        view.addSubviews(backdropImageView, posterImageView,
+                         movieName, blurEffectView, detailsBackView,
+                         aboutMovieLabel, aboutMovie)
         blurEffectView.addSubview(rateStackView)
         detailsBackView.addSubview(detailsStackView)
 

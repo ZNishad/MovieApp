@@ -24,12 +24,8 @@ class SearchViewModel {
         movieList.count
     }
 
-    func cellData(index: Int) -> MovieModel? {
+    func getMovieModel(index: Int) -> MovieModel? {
         movieList[index]
-    }
-
-    func movieModelId(index: Int) -> Int? {
-        movieList[index].id
     }
 
     var callback: ((ViewState) -> Void)?
@@ -41,16 +37,12 @@ class SearchViewModel {
             self.callback?(.loaded)
             switch response {
             case .success(let model):
-                DispatchQueue.main.async {
-                    self.page = model.page ?? 0
-                    self.movieList = model.results ?? []
-                    self.callback?(.hideImage(!self.movieList.isEmpty))
-                    self.callback?(.reloadData)
-                }
+                self.page = model.page ?? 0
+                self.movieList = model.results ?? []
+                self.callback?(.hideImage(!self.movieList.isEmpty))
+                self.callback?(.reloadData)
             case .error(let model):
-                DispatchQueue.main.async {
-                    self.callback?(.error(model.errorMessage))
-                }
+                self.callback?(.error(model.errorMessage))
             }
         })
     }

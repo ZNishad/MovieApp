@@ -27,14 +27,10 @@ class MovieDetailsViewModel {
             self.callback?(.loaded)
             switch response {
             case .success(let model):
-                DispatchQueue.main.async {
-                    self.movieDetails = model
-                    self.callback?(.reloadData)
-                }
+                self.movieDetails = model
+                self.callback?(.reloadData)
             case .error(let model):
-                DispatchQueue.main.async {
-                    self.callback?(.error(model.errorMessage))
-                }
+                self.callback?(.error(model.errorMessage))
             }
         })
     }

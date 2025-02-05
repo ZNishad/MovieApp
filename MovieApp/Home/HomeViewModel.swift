@@ -15,10 +15,6 @@ class HomeViewModel {
         movieList.count
     }
 
-    func movieImagePath(index: Int) -> String? {
-        movieList[index].posterFullPath
-    }
-
     enum ViewState {
         case loading
         case loaded
@@ -29,17 +25,17 @@ class HomeViewModel {
     var callback: ((ViewState) -> Void)?
 
 //    private var coordinator: HomeCoordinator?
-
+//
 //    init(coordinator: HomeCoordinator?) {
 //        self.coordinator = coordinator
 //    }
-
-    func didSelectMovie(index: Int) {
+//
+//    func didSelectMovie(index: Int) {
 //        coordinator?.showMovieDetailsController(model: movieList[index])
-    }
+//    }
 
-    func movieModelId(index: Int) -> Int? {
-        movieList[index].id
+    func getMovieModel(index: Int) -> MovieModel? {
+        movieList[index]
     }
 
     func getTopRatedMovieList() {
@@ -49,15 +45,11 @@ class HomeViewModel {
             self.callback?(.loaded)
             switch response {
             case .success(let model):
-                DispatchQueue.main.async {
-                    self.page = model.page ?? 0
-                    self.movieList = Array((model.results ?? []).prefix(5))
-                    self.callback?(.reloadData)
-                }
+                self.page = model.page ?? 0
+                self.movieList = Array((model.results ?? []).prefix(5))
+                self.callback?(.reloadData)
             case .error(let model):
-                DispatchQueue.main.async {
-                    self.callback?(.error(model.errorMessage))
-                }
+                self.callback?(.error(model.errorMessage))
             }
         })
     }

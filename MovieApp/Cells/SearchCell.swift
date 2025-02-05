@@ -40,21 +40,6 @@ class SearchCell: UICollectionViewCell {
         return imageView
     }()
 
-    private let genreLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .clear
-        label.text = "Action"
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 12)
-        return label
-    }()
-
-    private let genreLogoView: UIImageView = {
-        let ticket = UIImage(resource: .ticket)
-        let imageView = UIImageView(image: ticket)
-        return imageView
-    }()
-
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
@@ -66,21 +51,6 @@ class SearchCell: UICollectionViewCell {
 
     private let dateLogoView: UIImageView = {
         let ticket = UIImage(resource: .calendarBlank)
-        let imageView = UIImageView(image: ticket)
-        return imageView
-    }()
-
-    private let durationLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .clear
-        label.text = "139 minutes"
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 12)
-        return label
-    }()
-
-    private let durationLogoView: UIImageView = {
-        let ticket = UIImage(resource: .clock)
         let imageView = UIImageView(image: ticket)
         return imageView
     }()
@@ -103,9 +73,7 @@ class SearchCell: UICollectionViewCell {
     private func setupUI() {
         backgroundColor = .clear
         contentView.addSubviews(stackView, imageView)
-        stackView.addSubviews(nameLabel, rateStarLogoView, rateLabel,
-                              genreLogoView, genreLabel, dateLogoView,
-                              dateLabel, durationLogoView, durationLabel)
+        stackView.addSubviews(nameLabel, rateStarLogoView, rateLabel, dateLogoView, dateLabel)
         imageView.layer.cornerRadius = 16
         imageView.clipsToBounds = true
         imageView.top(contentView.topAnchor).0
@@ -123,42 +91,23 @@ class SearchCell: UICollectionViewCell {
             .trailing(stackView.trailingAnchor).0
             .height(24)
 
-        rateStarLogoView.top(nameLabel.bottomAnchor, 14).0
+        rateStarLogoView.bottom(dateLogoView.topAnchor, -14).0
             .leading(stackView.leadingAnchor).0
             .width(16).0
             .height(16)
 
-        rateLabel.top(nameLabel.bottomAnchor, 14).0
+        rateLabel.bottom(dateLogoView.topAnchor, -14).0
             .leading((rateStarLogoView.trailingAnchor), 4).0
             .trailing(stackView.trailingAnchor).0
             .height(16)
 
-        genreLogoView.top(rateStarLogoView.bottomAnchor, 4).0
+
+        dateLogoView.bottom(stackView.bottomAnchor, -4).0
             .leading(stackView.leadingAnchor).0
             .width(16).0
             .height(16)
 
-        genreLabel.top(rateStarLogoView.bottomAnchor, 4).0
-            .leading((genreLogoView.trailingAnchor), 4).0
-            .trailing(stackView.trailingAnchor).0
-            .height(16)
-
-        dateLogoView.top(genreLogoView.bottomAnchor, 4).0
-            .leading(stackView.leadingAnchor).0
-            .width(16).0
-            .height(16)
-
-        dateLabel.top(genreLogoView.bottomAnchor, 4).0
-            .leading((dateLogoView.trailingAnchor), 4).0
-            .trailing(stackView.trailingAnchor).0
-            .height(16)
-
-        durationLogoView.top(dateLogoView.bottomAnchor, 4).0
-            .leading(stackView.leadingAnchor).0
-            .width(16).0
-            .height(16)
-
-        durationLabel.top(dateLogoView.bottomAnchor, 4).0
+        dateLabel.bottom(stackView.bottomAnchor, -4).0
             .leading((dateLogoView.trailingAnchor), 4).0
             .trailing(stackView.trailingAnchor).0
             .height(16)
@@ -172,7 +121,7 @@ class SearchCell: UICollectionViewCell {
         nameLabel.text = name
         let roundedRate = Int((rate*10).rounded())
         rateLabel.text = "\(Double(roundedRate)/10)"
-        dateLabel.text = date
+        dateLabel.text = String(date?.prefix(4) ?? "")
     }
 
 }

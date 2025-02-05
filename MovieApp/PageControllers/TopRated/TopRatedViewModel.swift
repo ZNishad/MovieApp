@@ -24,12 +24,8 @@ class TopRatedViewModel {
         movieList.count
     }
 
-    func cellData(index: Int) -> String? {
-        movieList[index].posterFullPath
-    }
-
-    func movieModelId(index: Int) -> Int? {
-        movieList[index].id
+    func getMovieModel(index: Int) -> MovieModel? {
+        movieList[index]
     }
 
     func getTopRatedMovieList() {
@@ -39,15 +35,11 @@ class TopRatedViewModel {
             self.callback?(.loaded)
             switch response {
             case .success(let model):
-                DispatchQueue.main.async {
-                    self.page = model.page ?? 0
-                    self.movieList = model.results ?? []
-                    self.callback?(.reloadData)
-                }
+                self.page = model.page ?? 0
+                self.movieList = model.results ?? []
+                self.callback?(.reloadData)
             case .error(let model):
-                DispatchQueue.main.async {
-                    self.callback?(.errer(model.errorMessage))
-                }
+                self.callback?(.errer(model.errorMessage))
             }
         })
     }

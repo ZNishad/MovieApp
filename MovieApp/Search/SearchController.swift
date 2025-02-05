@@ -31,7 +31,8 @@ class SearchController: UIViewController {
 
     override func viewDidLoad() {
         view.backgroundColor = .pageBack
-        view.addSubviews(introLabel, searchField, collectionView, imageView, emptyImage)
+        view.addSubviews(introLabel, backView, collectionView, emptyImage)
+        backView.addSubviews(searchField, imageView)
         setupUI()
         setupCallback()
     }
@@ -56,15 +57,13 @@ class SearchController: UIViewController {
         return label
     }()
 
-    lazy var imageView: UIImageView = {
-        let image = UIImage(resource: .searchIcon)
-        var imageView = UIImageView(image: image.resizeImage(newWidth: 24))
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchIconAction)))
-        return imageView
+    private let backView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }()
 
-    lazy var searchField: UITextField = {
+    private lazy var searchField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .searchFieldBack
         field.attributedPlaceholder = NSAttributedString(
@@ -72,8 +71,16 @@ class SearchController: UIViewController {
             attributes: [NSAttributedString.Key.foregroundColor : UIColor.tabBarUnselected])
         field.textColor = .white
         field.layer.cornerRadius = 16
-        field.addTarget(self, action: #selector(searchIconAction), for: .primaryActionTriggered)
+        field.addTarget(self, action: #selector(searchIconAction), for: .editingChanged)
         return field
+    }()
+
+    private lazy var imageView: UIImageView = {
+        let image = UIImage(resource: .searchIcon)
+        var imageView = UIImageView(image: image.resizeImage(newWidth: 24))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchIconAction)))
+        return imageView
     }()
 
     private func setupUI() {
@@ -82,10 +89,12 @@ class SearchController: UIViewController {
             .trailing(view.trailingAnchor, -24).0
             .height(27)
 
-        searchField.top(introLabel.bottomAnchor, 24).0
+        backView.top(introLabel.bottomAnchor, 24).0
             .leading(view.leadingAnchor, 24).0
             .trailing(view.trailingAnchor, -24).0
             .height(42)
+
+        searchField.fillSuperView()
 
         imageView.centerY(searchField.centerYAnchor).0
             .trailing(searchField.trailingAnchor, -24)
@@ -140,7 +149,7 @@ extension SearchController: UICollectionViewDelegateFlowLayout, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as! SearchCell
-        let cellData = viewModel.cellData(index: indexPath.item)
+        let cellData = viewModel.getMovieModel(index: indexPath.item)
         cell.configureData(imageName: cellData?.posterFullPath,
                            name: cellData?.title,
                            rate: cellData?.voteAverage,
@@ -149,8 +158,8 @@ extension SearchController: UICollectionViewDelegateFlowLayout, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 307,
-               height: 120)
+        let cellWidth = view.frame.width * 0.7638
+        return CGSize(width: cellWidth, height: cellWidth * 0.39)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -158,7 +167,7 @@ extension SearchController: UICollectionViewDelegateFlowLayout, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let modelId = viewModel.movieModelId(index: indexPath.item) else { return }
+        guard let modelId = viewModel.getMovieModel(index: indexPath.item)?.id else { return }
         let controller = MovieDetailsController(viewModelId: modelId)
         navigationController?.show(controller, sender: nil)
     }

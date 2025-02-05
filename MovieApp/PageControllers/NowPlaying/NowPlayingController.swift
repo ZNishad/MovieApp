@@ -57,13 +57,14 @@ extension NowPlayingController: UICollectionViewDelegateFlowLayout, UICollection
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SegmentItemCell
-        let imagePath = viewModel.cellData(index: indexPath.item)
+        let imagePath = viewModel.getMovieModel(index: indexPath.item)?.posterFullPath
         cell.configureData(imageName: imagePath)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 100, height: 145)
+        let cellWidth = view.frame.width * 0.2825
+        return CGSize(width: cellWidth, height: cellWidth * 1.45)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -75,9 +76,8 @@ extension NowPlayingController: UICollectionViewDelegateFlowLayout, UICollection
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let modelId = viewModel.movieModelId(index: indexPath.item) else { return }
+        guard let modelId = viewModel.getMovieModel(index: indexPath.item)?.id else { return }
         let controller = MovieDetailsController(viewModelId: modelId)
         navigationController?.show(controller, sender: nil)
-//        viewModel.didSelectMovie(index: indexPath.item)
     }
 }

@@ -101,7 +101,10 @@ class HomeController: UIViewController {
         }
 
         pageController.view.backgroundColor = .pageBack
-        pageController.setViewControllers([subController.first!], direction: .forward, animated: false)
+        if let controller = subController.first {
+            pageController.setViewControllers([controller], direction: .forward, animated: false)
+        }
+
     }
 
     private var currentIndex: Int = 0
@@ -137,14 +140,14 @@ extension HomeController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TopFiveCell
-        let imagePath = viewModel.movieImagePath(index: indexPath.item)
+        let imagePath = viewModel.getMovieModel(index: indexPath.item)?.posterFullPath
         cell.configureData(imageName: imagePath)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 145,
-               height: 210)
+        let cellHeight = view.frame.height * 0.24
+        return CGSize(width: cellHeight / 1.44, height: cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -152,7 +155,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let modelId = viewModel.movieModelId(index: indexPath.item) else { return }
+        guard let modelId = viewModel.getMovieModel(index: indexPath.item)?.id else { return }
         let controller = MovieDetailsController(viewModelId: modelId)
         navigationController?.show(controller, sender: nil)
     }
