@@ -8,6 +8,7 @@
 import UIKit
 
 class SegmentItemCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()

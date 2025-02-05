@@ -37,6 +37,5 @@ class TopFiveCell: UICollectionViewCell {
         guard let imageName else { return }
         imageView.setImage(urlString: imageName)
     }
-
 }
 

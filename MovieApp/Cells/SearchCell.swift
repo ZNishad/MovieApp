@@ -96,11 +96,10 @@ class SearchCell: UICollectionViewCell {
             .width(16).0
             .height(16)
 
-        rateLabel.bottom(dateLogoView.topAnchor, -14).0
+        rateLabel.bottom(dateLogoView.topAnchor, -4).0
             .leading((rateStarLogoView.trailingAnchor), 4).0
             .trailing(stackView.trailingAnchor).0
             .height(16)
-
 
         dateLogoView.bottom(stackView.bottomAnchor, -4).0
             .leading(stackView.leadingAnchor).0
@@ -123,5 +122,4 @@ class SearchCell: UICollectionViewCell {
         rateLabel.text = "\(Double(roundedRate)/10)"
         dateLabel.text = String(date?.prefix(4) ?? "")
     }
-
 }
