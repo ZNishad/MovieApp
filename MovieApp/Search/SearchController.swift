@@ -30,6 +30,7 @@ class SearchController: UIViewController {
     }()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .pageBack
         view.addSubviews(introLabel, backView, collectionView, emptyImage)
         backView.addSubviews(searchField, imageView)
@@ -71,7 +72,7 @@ class SearchController: UIViewController {
             attributes: [NSAttributedString.Key.foregroundColor : UIColor.tabBarUnselected])
         field.textColor = .white
         field.layer.cornerRadius = 16
-        field.addTarget(self, action: #selector(searchIconAction), for: .editingChanged)
+        field.addTarget(self, action: #selector(searchIconAction), for: .editingChanged )
         return field
     }()
 

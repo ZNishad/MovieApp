@@ -62,6 +62,7 @@ class HomeController: UIViewController {
     }()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .pageBack
         view.addSubviews(introLabel, collectionView, segmentView, pageController.view)
 
@@ -151,7 +152,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        30
+        15
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

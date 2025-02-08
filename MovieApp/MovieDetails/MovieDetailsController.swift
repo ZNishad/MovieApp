@@ -9,7 +9,7 @@ import UIKit
 
 class MovieDetailsController: UIViewController {
 
-    private let movieId: Int
+    private var movieId: Int = 0
 
     private let viewModel = MovieDetailsViewModel()
 
@@ -56,7 +56,6 @@ class MovieDetailsController: UIViewController {
         return rateCount
     }()
 
-
     private lazy var rateStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [rateLogo, rateCount])
         stackView.distribution = .fillEqually
@@ -65,11 +64,13 @@ class MovieDetailsController: UIViewController {
         return stackView
     }()
 
-    private let blurEffectView: UIView = {
+    private lazy var blurEffectView: UIView = {
         let view = UIView()
         view.backgroundColor = .blurEffect
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(rateMovie)))
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -265,5 +266,14 @@ class MovieDetailsController: UIViewController {
                 self.updateUI()
             }
         }
+    }
+
+    @objc private func rateMovie() {
+        guard movieId > 0 else { return }
+        let controller = RateController(viewModelId: movieId)
+        if let sheet = controller.sheetPresentationController {
+            sheet.detents = [.custom { _ in self.view.frame.height / 3 }]
+        }
+        present(controller, animated: true)
     }
 }

@@ -24,6 +24,7 @@ class NowPlayingController: UIViewController {
     }()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .pageBack
         view.addSubviews(collectionView)
         collectionView.fillSuperView()
