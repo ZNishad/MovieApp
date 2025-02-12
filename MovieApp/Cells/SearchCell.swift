@@ -91,7 +91,7 @@ class SearchCell: UICollectionViewCell {
             .trailing(stackView.trailingAnchor).0
             .height(24)
 
-        rateStarLogoView.bottom(dateLogoView.topAnchor, -14).0
+        rateStarLogoView.bottom(dateLogoView.topAnchor, -4).0
             .leading(stackView.leadingAnchor).0
             .width(16).0
             .height(16)
