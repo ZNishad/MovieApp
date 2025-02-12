@@ -147,8 +147,8 @@ extension HomeController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellHeight = view.frame.height * 0.24
-        return CGSize(width: cellHeight / 1.44, height: cellHeight)
+        let cellHeight = view.frame.height * 0.23
+        return CGSize(width: cellHeight / 1.40, height: cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -22,6 +22,14 @@ class MovieDetailsController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private lazy var detailLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Detail"
+        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.textColor = .white
+        return label
+    }()
+
     private let backdropImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -184,6 +192,10 @@ class MovieDetailsController: UIViewController {
         setupUI()
         setupCallback()
         viewModel.getMovieDetails(movieId: movieId)
+        navigationItem.backButtonDisplayMode = .minimal
+        if #available(iOS 14.0, *) {
+                navigationItem.backButtonDisplayMode = .minimal
+            }
     }
 
     func setupUI() {
@@ -237,6 +249,8 @@ class MovieDetailsController: UIViewController {
         aboutMovie.top(aboutMovieLabel.bottomAnchor, 24).0
             .leading(view.leadingAnchor, 29).0
             .trailing(view.trailingAnchor, -29)
+
+        navigationItem.titleView = detailLabel
     }
 
     func updateUI() {
