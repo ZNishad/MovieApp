@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PanModal
 
 class RateController: UIViewController {
     private var movieId: Int = 0
@@ -120,7 +121,7 @@ class RateController: UIViewController {
         }
     }
 
-    private var sliderValue: Double = 0.0
+    private var sliderValue: Double = 5.0
 
     @objc private func closeTapped() {
         dismiss(animated: true)
@@ -137,4 +138,21 @@ class RateController: UIViewController {
         dismiss(animated: true)
     }
 
+    lazy var modalHeight: CGFloat = view.frame.height / 3
+}
+
+extension RateController: PanModalPresentable {
+    var panScrollable: UIScrollView? { nil }
+
+    var shortFormHeight: PanModalHeight {
+        .contentHeight(modalHeight)
+    }
+
+    var longFormHeight: PanModalHeight {
+        shortFormHeight
+    }
+
+    var allowsTapToDismiss: Bool { true }
+
+    var allowsDragToDismiss: Bool { true }
 }

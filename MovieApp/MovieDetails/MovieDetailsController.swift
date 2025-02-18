@@ -192,10 +192,6 @@ class MovieDetailsController: UIViewController {
         setupUI()
         setupCallback()
         viewModel.getMovieDetails(movieId: movieId)
-        navigationItem.backButtonDisplayMode = .minimal
-        if #available(iOS 14.0, *) {
-                navigationItem.backButtonDisplayMode = .minimal
-            }
     }
 
     func setupUI() {
@@ -284,10 +280,11 @@ class MovieDetailsController: UIViewController {
 
     @objc private func rateMovie() {
         guard movieId > 0 else { return }
-        let controller = RateController(viewModelId: movieId)
-        if let sheet = controller.sheetPresentationController {
-            sheet.detents = [.custom { _ in self.view.frame.height / 3 }]
-        }
-        present(controller, animated: true)
+//        let controller = RateController(viewModelId: movieId)
+//        if let sheet = controller.sheetPresentationController {
+//            sheet.detents = [.custom { _ in self.view.frame.height / 3 }]
+//        }
+//        present(controller, animated: true)
+        presentPanModal(RateController(viewModelId: movieId))
     }
 }

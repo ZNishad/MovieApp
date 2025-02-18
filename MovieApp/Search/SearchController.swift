@@ -72,7 +72,7 @@ class SearchController: UIViewController {
             attributes: [NSAttributedString.Key.foregroundColor : UIColor.tabBarUnselected])
         field.textColor = .white
         field.layer.cornerRadius = 16
-        field.addTarget(self, action: #selector(searchIconAction), for: .editingChanged )
+        field.addTarget(self, action: #selector(searchIconAction), for: .editingChanged)
         return field
     }()
 
@@ -172,5 +172,4 @@ extension SearchController: UICollectionViewDelegateFlowLayout, UICollectionView
         let controller = MovieDetailsController(viewModelId: modelId)
         navigationController?.show(controller, sender: nil)
     }
-
 }

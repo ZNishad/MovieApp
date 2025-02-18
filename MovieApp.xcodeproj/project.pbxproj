@@ -44,6 +44,7 @@
 		215598792D4F7FBC00D44E98 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215598782D4F7FBC00D44E98 /* Coordinator.swift */; };
 		218A40962D575FC3003A23FB /* RateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A40952D575FC3003A23FB /* RateController.swift */; };
 		218A40982D575FD9003A23FB /* RateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A40972D575FD9003A23FB /* RateViewModel.swift */; };
+		218A409B2D64B620003A23FB /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 218A409A2D64B620003A23FB /* PanModal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				218A409B2D64B620003A23FB /* PanModal in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +315,7 @@
 			);
 			name = MovieApp;
 			packageProductDependencies = (
+				218A409A2D64B620003A23FB /* PanModal */,
 			);
 			productName = MovieApp;
 			productReference = 2151D9472D4F791800247F1B /* MovieApp.app */;
@@ -342,6 +345,9 @@
 			);
 			mainGroup = 2151D93E2D4F791800247F1B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				218A40992D64B620003A23FB /* XCRemoteSwiftPackageReference "PanModal" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2151D9482D4F791800247F1B /* Products */;
 			projectDirPath = "";
@@ -624,6 +630,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		218A40992D64B620003A23FB /* XCRemoteSwiftPackageReference "PanModal" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/slackhq/PanModal.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		218A409A2D64B620003A23FB /* PanModal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 218A40992D64B620003A23FB /* XCRemoteSwiftPackageReference "PanModal" */;
+			productName = PanModal;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2151D93F2D4F791800247F1B /* Project object */;
 }
