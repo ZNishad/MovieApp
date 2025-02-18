@@ -280,11 +280,6 @@ class MovieDetailsController: UIViewController {
 
     @objc private func rateMovie() {
         guard movieId > 0 else { return }
-//        let controller = RateController(viewModelId: movieId)
-//        if let sheet = controller.sheetPresentationController {
-//            sheet.detents = [.custom { _ in self.view.frame.height / 3 }]
-//        }
-//        present(controller, animated: true)
         presentPanModal(RateController(viewModelId: movieId))
     }
 }
