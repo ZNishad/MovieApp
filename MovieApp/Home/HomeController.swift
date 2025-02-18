@@ -73,6 +73,10 @@ class HomeController: UIViewController {
         setupUI()
         setupCallback()
         viewModel.getTopRatedMovieList()
+
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.sectionInset.left = 24
+        }
     }
 
     private func setupUI() {
@@ -82,9 +86,9 @@ class HomeController: UIViewController {
             .height(27)
 
         collectionView.top(introLabel.bottomAnchor, 21).0
-            .leading(view.leadingAnchor, 24).0
-            .trailing(view.trailingAnchor, -24).0
-            .bottom(view.centerYAnchor, -view.frame.height/8)
+            .leading(view.leadingAnchor).0
+            .trailing(view.trailingAnchor).0
+            .bottom(view.centerYAnchor, -view.frame.height/13)
 
         segmentView.top(collectionView.bottomAnchor, 24).0
             .leading(view.leadingAnchor, 24).0
@@ -142,7 +146,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TopFiveCell
         let imagePath = viewModel.getMovieModel(index: indexPath.item)?.posterFullPath
-        cell.configureData(imageName: imagePath)
+        cell.configureData(imageName: imagePath, number: String(indexPath.item + 1))
         return cell
     }
 

@@ -71,7 +71,7 @@ class RateController: UIViewController {
         let button = UIButton()
         button.setTitle("OK", for: .normal)
         button.layer.cornerRadius = 28
-        button.backgroundColor = .okButton
+        button.backgroundColor = .tabBarSelected
         button.addTarget(self, action: #selector(setRating), for: .touchUpInside)
         return button
     }()
