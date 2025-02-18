@@ -144,15 +144,13 @@ class RateController: UIViewController {
 extension RateController: PanModalPresentable {
     var panScrollable: UIScrollView? { nil }
 
-    var shortFormHeight: PanModalHeight {
-        .contentHeight(modalHeight)
-    }
+    var shortFormHeight: PanModalHeight { .contentHeight(modalHeight) }
 
-    var longFormHeight: PanModalHeight {
-        shortFormHeight
-    }
+    var longFormHeight: PanModalHeight { shortFormHeight }
 
     var allowsTapToDismiss: Bool { true }
 
     var allowsDragToDismiss: Bool { true }
+
+    var cornerRadius: CGFloat { 24 }
 }
