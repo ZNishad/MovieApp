@@ -43,6 +43,7 @@
 		218A40962D575FC3003A23FB /* RateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A40952D575FC3003A23FB /* RateController.swift */; };
 		218A40982D575FD9003A23FB /* RateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A40972D575FD9003A23FB /* RateViewModel.swift */; };
 		218A409B2D64B620003A23FB /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 218A409A2D64B620003A23FB /* PanModal */; };
+		218B58562D67626900FC100D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218B58552D67626900FC100D /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		215598762D4F7FA000D44E98 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		218A40952D575FC3003A23FB /* RateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateController.swift; sourceTree = "<group>"; };
 		218A40972D575FD9003A23FB /* RateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewModel.swift; sourceTree = "<group>"; };
+		218B58552D67626900FC100D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +123,7 @@
 				2151D9602D4F792000247F1B /* Assets.xcassets */,
 				2151D9612D4F792000247F1B /* Info.plist */,
 				2151D9632D4F792000247F1B /* LaunchScreen.storyboard */,
-				2151D9672D4F792000247F1B /* TabBarController.swift */,
+				218B58542D67623E00FC100D /* TabBarController */,
 				2155982C2D4F7A7500D44E98 /* Home */,
 				215598342D4F7AF500D44E98 /* Search */,
 				215598392D4F7BA500D44E98 /* WatchList */,
@@ -292,6 +294,15 @@
 			path = RateController;
 			sourceTree = "<group>";
 		};
+		218B58542D67623E00FC100D /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				2151D9672D4F792000247F1B /* TabBarController.swift */,
+				218B58552D67626900FC100D /* CustomTabBar.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -377,6 +388,7 @@
 				215598562D4F7D3F00D44E98 /* MovieDetailsController.swift in Sources */,
 				215598532D4F7CFF00D44E98 /* PopularViewModel.swift in Sources */,
 				2155982E2D4F7A8000D44E98 /* HomeController.swift in Sources */,
+				218B58562D67626900FC100D /* CustomTabBar.swift in Sources */,
 				218A40962D575FC3003A23FB /* RateController.swift in Sources */,
 				2155984F2D4F7CD600D44E98 /* TopRatedViewModel.swift in Sources */,
 				215598692D4F7EC500D44E98 /* MovieModel.swift in Sources */,

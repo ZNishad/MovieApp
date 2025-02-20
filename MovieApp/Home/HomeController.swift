@@ -82,7 +82,7 @@ class HomeController: UIViewController {
         collectionView.top(introLabel.bottomAnchor, 21).0
             .leading(view.leadingAnchor).0
             .trailing(view.trailingAnchor).0
-            .bottom(view.centerYAnchor, -view.frame.height/13)
+            .bottom(view.centerYAnchor, -24)
 
         segmentView.top(collectionView.bottomAnchor, 24).0
             .leading(view.leadingAnchor, 24).0
@@ -103,7 +103,6 @@ class HomeController: UIViewController {
         if let controller = subController.first {
             pageController.setViewControllers([controller], direction: .forward, animated: false)
         }
-
     }
 
     private var currentIndex: Int = 0
@@ -145,7 +144,7 @@ extension HomeController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellHeight = view.frame.height * 0.23
+        let cellHeight = view.frame.height * 0.27
         return CGSize(width: cellHeight / 1.40, height: cellHeight)
     }
 
