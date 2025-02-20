@@ -30,6 +30,10 @@ class TabBarController: UITabBarController {
         lineView.width(tabBar.frame.width).0
             .height(1).0
             .top(tabBar.topAnchor)
+
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .pageBack
+        tabBar.standardAppearance = appearance
     }
 }
 
