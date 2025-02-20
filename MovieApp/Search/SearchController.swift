@@ -21,14 +21,6 @@ class SearchController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private let viewModel = SearchViewModel()
-
-    private let emptyImage: UIImageView = {
-        let image = UIImage(resource: .searchCanNotBeFound)
-        let imageView = UIImageView(image: image)
-        return imageView
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .pageBack
@@ -37,6 +29,14 @@ class SearchController: UIViewController {
         setupUI()
         setupCallback()
     }
+
+    private let viewModel = SearchViewModel()
+
+    private let emptyImage: UIImageView = {
+        let image = UIImage(resource: .searchCanNotBeFound)
+        let imageView = UIImageView(image: image)
+        return imageView
+    }()
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

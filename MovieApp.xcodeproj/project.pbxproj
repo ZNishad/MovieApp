@@ -14,7 +14,6 @@
 		2151D96E2D4F792000247F1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2151D9632D4F792000247F1B /* LaunchScreen.storyboard */; };
 		2155982E2D4F7A8000D44E98 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155982D2D4F7A8000D44E98 /* HomeController.swift */; };
 		215598302D4F7A8C00D44E98 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155982F2D4F7A8C00D44E98 /* HomeViewModel.swift */; };
-		215598322D4F7ACE00D44E98 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215598312D4F7ACE00D44E98 /* HomeCoordinator.swift */; };
 		215598362D4F7B2100D44E98 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215598352D4F7B2100D44E98 /* SearchController.swift */; };
 		215598382D4F7B6200D44E98 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215598372D4F7B6200D44E98 /* SearchViewModel.swift */; };
 		2155983B2D4F7BBF00D44E98 /* WatchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2155983A2D4F7BBF00D44E98 /* WatchListController.swift */; };
@@ -41,7 +40,6 @@
 		215598712D4F7F3000D44E98 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215598702D4F7F3000D44E98 /* NetworkManager.swift */; };
 		215598742D4F7F7700D44E98 /* CustomSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215598732D4F7F7700D44E98 /* CustomSegmentView.swift */; };
 		215598772D4F7FA000D44E98 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215598762D4F7FA000D44E98 /* Extensions.swift */; };
-		215598792D4F7FBC00D44E98 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215598782D4F7FBC00D44E98 /* Coordinator.swift */; };
 		218A40962D575FC3003A23FB /* RateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A40952D575FC3003A23FB /* RateController.swift */; };
 		218A40982D575FD9003A23FB /* RateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A40972D575FD9003A23FB /* RateViewModel.swift */; };
 		218A409B2D64B620003A23FB /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 218A409A2D64B620003A23FB /* PanModal */; };
@@ -57,7 +55,6 @@
 		2151D9672D4F792000247F1B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2155982D2D4F7A8000D44E98 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		2155982F2D4F7A8C00D44E98 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		215598312D4F7ACE00D44E98 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		215598352D4F7B2100D44E98 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		215598372D4F7B6200D44E98 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		2155983A2D4F7BBF00D44E98 /* WatchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListController.swift; sourceTree = "<group>"; };
@@ -84,7 +81,6 @@
 		215598702D4F7F3000D44E98 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		215598732D4F7F7700D44E98 /* CustomSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentView.swift; sourceTree = "<group>"; };
 		215598762D4F7FA000D44E98 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		215598782D4F7FBC00D44E98 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		218A40952D575FC3003A23FB /* RateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateController.swift; sourceTree = "<group>"; };
 		218A40972D575FD9003A23FB /* RateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,7 +140,6 @@
 			children = (
 				2155982D2D4F7A8000D44E98 /* HomeController.swift */,
 				2155982F2D4F7A8C00D44E98 /* HomeViewModel.swift */,
-				215598312D4F7ACE00D44E98 /* HomeCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -284,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				215598762D4F7FA000D44E98 /* Extensions.swift */,
-				215598782D4F7FBC00D44E98 /* Coordinator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -394,7 +388,6 @@
 				215598382D4F7B6200D44E98 /* SearchViewModel.swift in Sources */,
 				215598492D4F7C8900D44E98 /* UpcomingController.swift in Sources */,
 				2155986F2D4F7F1900D44E98 /* NetworkHelper.swift in Sources */,
-				215598792D4F7FBC00D44E98 /* Coordinator.swift in Sources */,
 				215598652D4F7E9700D44E98 /* MovieEndpoints.swift in Sources */,
 				2155983B2D4F7BBF00D44E98 /* WatchListController.swift in Sources */,
 				2155984D2D4F7CC200D44E98 /* TopRatedController.swift in Sources */,
@@ -408,7 +401,6 @@
 				215598772D4F7FA000D44E98 /* Extensions.swift in Sources */,
 				2155983D2D4F7BD800D44E98 /* WatchListViewModel.swift in Sources */,
 				215598672D4F7EAA00D44E98 /* MovieManager.swift in Sources */,
-				215598322D4F7ACE00D44E98 /* HomeCoordinator.swift in Sources */,
 				215598512D4F7CF200D44E98 /* PopularController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,15 @@ import UIKit
 
 class UpcomingController: UIViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .pageBack
+        view.addSubviews(collectionView)
+        collectionView.fillSuperView()
+        setupCallback()
+        viewModel.getUpcomingMovieList()
+    }
+
     private let viewModel = UpcomingViewModel()
 
     private lazy var collectionView: UICollectionView = {
@@ -22,15 +31,6 @@ class UpcomingController: UIViewController {
         collection.dataSource = self
         return collection
     }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .pageBack
-        view.addSubviews(collectionView)
-        collectionView.fillSuperView()
-        setupCallback()
-        viewModel.getUpcomingMovieList()
-    }
 
     private func setupCallback() {
         viewModel.callback = {

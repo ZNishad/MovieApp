@@ -20,12 +20,24 @@ class HomeController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-//    private lazy var viewModel: HomeViewModel = {
-//        guard let navigationController else {
-//            return .init(coordinator: nil)
-//        }
-//        return .init(coordinator: .init(navigationController: navigationController))
-//    }()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .pageBack
+        view.addSubviews(introLabel, collectionView, segmentView, pageController.view)
+
+        pageController.delegate = self
+        pageController.dataSource = self
+        addChild(pageController)
+
+        setupUI()
+        setupCallback()
+        viewModel.getTopRatedMovieList()
+
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.sectionInset.left = 24
+        }
+    }
+    
     private let viewModel = HomeViewModel()
 
     private let segmentView = CustomSegmentView(items: [
@@ -60,24 +72,6 @@ class HomeController: UIViewController {
         collection.dataSource = self
         return collection
     }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .pageBack
-        view.addSubviews(introLabel, collectionView, segmentView, pageController.view)
-
-        pageController.delegate = self
-        pageController.dataSource = self
-        addChild(pageController)
-
-        setupUI()
-        setupCallback()
-        viewModel.getTopRatedMovieList()
-
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.sectionInset.left = 24
-        }
-    }
 
     private func setupUI() {
         introLabel.top(view.safeAreaLayoutGuide.topAnchor, -24).0

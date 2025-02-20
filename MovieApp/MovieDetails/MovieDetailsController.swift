@@ -22,12 +22,26 @@ class MovieDetailsController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .pageBack
+        setupUI()
+        setupCallback()
+        viewModel.getMovieDetails(movieId: movieId)
+    }
+
     private lazy var detailLabel: UILabel = {
         let label = UILabel()
         label.text = "Detail"
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = .white
         return label
+    }()
+
+    private lazy var watchListButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.watchListAdded, for: .normal)
+        return button
     }()
 
     private let backdropImageView: UIImageView = {
@@ -186,14 +200,6 @@ class MovieDetailsController: UIViewController {
         return label
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .pageBack
-        setupUI()
-        setupCallback()
-        viewModel.getMovieDetails(movieId: movieId)
-    }
-
     func setupUI() {
         view.addSubviews(backdropImageView, posterImageView,
                          movieName, blurEffectView, detailsBackView,
@@ -247,18 +253,20 @@ class MovieDetailsController: UIViewController {
             .trailing(view.trailingAnchor, -29)
 
         navigationItem.titleView = detailLabel
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: watchListButton)
     }
 
     func updateUI() {
-        backdropImageView.setImage(urlString: viewModel.movieDetails?.backdropFullPath)
-        posterImageView.setImage(urlString: viewModel.movieDetails?.posterFullPath)
-        movieName.text = viewModel.movieDetails?.originalTitle
-        let roundedRate = Int(((viewModel.movieDetails?.voteAverage ?? 0.0)*10).rounded())
+        guard let details = viewModel.movieDetails else { return }
+        backdropImageView.setImage(urlString: details.backdropFullPath)
+        posterImageView.setImage(urlString: details.posterFullPath)
+        movieName.text = details.originalTitle
+        let roundedRate = Int(((details.voteAverage ?? 0.0)*10).rounded())
         rateCount.text = "\(Double(roundedRate)/10)"
-        dateLabel.text = String(viewModel.movieDetails?.releaseDate?.prefix(4) ?? "")
-        durationLabel.text = "\(viewModel.movieDetails?.runtime ?? 139) minutes"
-        genreLabel.text = viewModel.movieDetails?.genres?.first?.name ?? "N/A"
-        aboutMovie.text = viewModel.movieDetails?.overview ?? ""
+        dateLabel.text = String(details.releaseDate?.prefix(4) ?? "")
+        durationLabel.text = "\(details.runtime ?? 139) minutes"
+        genreLabel.text = details.genres?.first?.name ?? "N/A"
+        aboutMovie.text = details.overview ?? ""
     }
 
     private func setupCallback() {

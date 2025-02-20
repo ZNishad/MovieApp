@@ -8,7 +8,6 @@
 import UIKit
 
 class WatchListController: UIViewController {
-
     init() {
         super.init(nibName: nil, bundle: nil)
         tabBarItem = .init(
@@ -25,6 +24,4 @@ class WatchListController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .pageBack
     }
-
-    private let viewModel = WatchListViewModel()
 }

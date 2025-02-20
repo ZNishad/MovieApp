@@ -113,13 +113,10 @@ class SearchCell: UICollectionViewCell {
     }
 
     func configureData(imageName: String?, name: String?, rate: Double?, date: String?) {
-        imageView.image = nil
-        nameLabel.text = nil
         guard let imageName, let name, let rate else { return }
         imageView.setImage(urlString: imageName)
         nameLabel.text = name
-        let roundedRate = Int((rate*10).rounded())
-        rateLabel.text = "\(Double(roundedRate)/10)"
+        rateLabel.text = "\(Double(Int((rate*10).rounded()))/10)"
         dateLabel.text = String(date?.prefix(4) ?? "")
     }
 }

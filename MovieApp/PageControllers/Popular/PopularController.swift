@@ -8,6 +8,16 @@
 import UIKit
 
 class PopularController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .pageBack
+        view.addSubviews(collectionView)
+        collectionView.fillSuperView()
+        setupCallback()
+        viewModel.getPopularMovieList()
+    }
+    
     private let viewModel = PopularViewModel()
 
     private lazy var collectionView: UICollectionView = {
@@ -21,15 +31,6 @@ class PopularController: UIViewController {
         collection.dataSource = self
         return collection
     }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .pageBack
-        view.addSubviews(collectionView)
-        collectionView.fillSuperView()
-        setupCallback()
-        viewModel.getPopularMovieList()
-    }
 
     private func setupCallback() {
         viewModel.callback = {
