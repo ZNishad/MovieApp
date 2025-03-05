@@ -15,30 +15,32 @@ class NetworkManager {
     private init() { }
 
     func request<T>(model: NetworkRequestModel, completion: @escaping (NetworkResponse<T>) -> Void) {
-        guard let urlRequest = getUrlRequest(model: model) else { return }
-        URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, response, error in
-            let httpResponse = response as? HTTPURLResponse
-            if let data {
-                if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
-                   let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
-                    print(String(decoding:jsonData, as: UTF8.self))
-                } else {
-                    print("json data malformed")
-                }
-                if let model = try? JSONDecoder().decode(T.self, from: data) {
-                    DispatchQueue.main.async {
-                        completion(.success(model))
+        DispatchQueue.global(qos: .background).async {
+            guard let urlRequest = self.getUrlRequest(model: model) else { return }
+            URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, response, error in
+                let httpResponse = response as? HTTPURLResponse
+                if let data {
+                    if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
+                       let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+                        print(String(decoding:jsonData, as: UTF8.self))
+                    } else {
+                        print("json data malformed")
                     }
-                    return
+                    if let model = try? JSONDecoder().decode(T.self, from: data) {
+                        DispatchQueue.main.async {
+                            completion(.success(model))
+                        }
+                        return
+                    }
                 }
-            }
-            DispatchQueue.main.async {
-                completion(.error(CoreModel(
-                    success: false,
-                    statusCode: httpResponse?.statusCode,
-                    statusMessage: "")))
-            }
-        }).resume()
+                DispatchQueue.main.async {
+                    completion(.error(CoreModel(
+                        success: false,
+                        statusCode: httpResponse?.statusCode,
+                        statusMessage: "")))
+                }
+            }).resume()
+        }
     }
 
     private func getUrlRequest(model: NetworkRequestModel) -> URLRequest? {

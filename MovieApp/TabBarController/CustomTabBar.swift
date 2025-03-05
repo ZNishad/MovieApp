@@ -2,12 +2,6 @@ import UIKit
 
 class CustomTabBar: UITabBar {
 
-    private let topLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .tabBarSelected
-        return view
-    }()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(topLine)
@@ -21,6 +15,12 @@ class CustomTabBar: UITabBar {
         isTranslucent = false
         backgroundColor = .pageBack
     }
+
+    private let topLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .tabBarSelected
+        return view
+    }()
 
     override func layoutSubviews() {
         super.layoutSubviews()

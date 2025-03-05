@@ -44,6 +44,7 @@
 		218A40982D575FD9003A23FB /* RateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A40972D575FD9003A23FB /* RateViewModel.swift */; };
 		218A409B2D64B620003A23FB /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 218A409A2D64B620003A23FB /* PanModal */; };
 		218B58562D67626900FC100D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218B58552D67626900FC100D /* CustomTabBar.swift */; };
+		218E13492D786C950009E785 /* UDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E13482D786C950009E785 /* UDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		218A40952D575FC3003A23FB /* RateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateController.swift; sourceTree = "<group>"; };
 		218A40972D575FD9003A23FB /* RateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewModel.swift; sourceTree = "<group>"; };
 		218B58552D67626900FC100D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		218E13482D786C950009E785 /* UDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				215598762D4F7FA000D44E98 /* Extensions.swift */,
+				218E13482D786C950009E785 /* UDefaults.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				2155984F2D4F7CD600D44E98 /* TopRatedViewModel.swift in Sources */,
 				215598692D4F7EC500D44E98 /* MovieModel.swift in Sources */,
 				215598452D4F7C4000D44E98 /* NowPlayingController.swift in Sources */,
+				218E13492D786C950009E785 /* UDefaults.swift in Sources */,
 				2155986D2D4F7EFD00D44E98 /* MovieDetailsModel.swift in Sources */,
 				2155984B2D4F7CA100D44E98 /* UpcomingViewModel.swift in Sources */,
 				2151D9692D4F792000247F1B /* AppDelegate.swift in Sources */,

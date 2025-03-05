@@ -28,8 +28,8 @@ class TabBarController: UITabBarController {
         tabBar.standardAppearance = appearance
 
         for item in tabBar.items ?? [] {
-            item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -3) // Уменьшаем расстояние по вертикали
-            item.imageInsets = UIEdgeInsets(top: 3, left: 0, bottom: -3, right: 0) // Уменьшаем расстояние между иконкой и текстом
+            item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -3)
+            item.imageInsets = UIEdgeInsets(top: 3, left: 0, bottom: -3, right: 0)
         }
     }
 }
