@@ -45,6 +45,7 @@
 		218A409B2D64B620003A23FB /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 218A409A2D64B620003A23FB /* PanModal */; };
 		218B58562D67626900FC100D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218B58552D67626900FC100D /* CustomTabBar.swift */; };
 		218E13492D786C950009E785 /* UDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218E13482D786C950009E785 /* UDefaults.swift */; };
+		21B5A9D62D807B03001C612F /* WatchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5A9D52D807B03001C612F /* WatchListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		218A40972D575FD9003A23FB /* RateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewModel.swift; sourceTree = "<group>"; };
 		218B58552D67626900FC100D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		218E13482D786C950009E785 /* UDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDefaults.swift; sourceTree = "<group>"; };
+		21B5A9D52D807B03001C612F /* WatchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				2155985A2D4F7DFB00D44E98 /* TopFiveCell.swift */,
 				2155985C2D4F7E0900D44E98 /* SearchCell.swift */,
 				2155985E2D4F7E3A00D44E98 /* SegmentItemCell.swift */,
+				21B5A9D52D807B03001C612F /* WatchListCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				215598532D4F7CFF00D44E98 /* PopularViewModel.swift in Sources */,
 				2155982E2D4F7A8000D44E98 /* HomeController.swift in Sources */,
 				218B58562D67626900FC100D /* CustomTabBar.swift in Sources */,
+				21B5A9D62D807B03001C612F /* WatchListCell.swift in Sources */,
 				218A40962D575FC3003A23FB /* RateController.swift in Sources */,
 				2155984F2D4F7CD600D44E98 /* TopRatedViewModel.swift in Sources */,
 				215598692D4F7EC500D44E98 /* MovieModel.swift in Sources */,

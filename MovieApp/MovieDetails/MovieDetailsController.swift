@@ -261,8 +261,7 @@ class MovieDetailsController: UIViewController {
         backdropImageView.setImage(urlString: details.backdropFullPath)
         posterImageView.setImage(urlString: details.posterFullPath)
         movieName.text = details.originalTitle
-        let roundedRate = Int(((details.voteAverage ?? 0.0)*10).rounded())
-        rateCount.text = "\(Double(roundedRate)/10)"
+        rateCount.text = "\(Double(Int(((details.voteAverage ?? 0.0)*10).rounded()))/10)"
         dateLabel.text = String(details.releaseDate?.prefix(4) ?? "")
         durationLabel.text = "\(details.runtime ?? 139) minutes"
         genreLabel.text = details.genres?.first?.name ?? "N/A"

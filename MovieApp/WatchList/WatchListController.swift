@@ -9,6 +9,8 @@ import UIKit
 
 class WatchListController: UIViewController {
 
+    private let movieDetailsList: [MovieDetailsModel] = []
+
     init() {
         super.init(nibName: nil, bundle: nil)
         tabBarItem = .init(
@@ -24,7 +26,7 @@ class WatchListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .pageBack
-        view.addSubviews(emptyImage, watchListLabel)
+        view.addSubviews(emptyImage, watchListLabel, collectionView)
         setupUI()
     }
 
@@ -42,6 +44,18 @@ class WatchListController: UIViewController {
         return imageView
     }()
 
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.register(WatchListCell.self, forCellWithReuseIdentifier: "cell")
+        collection.showsHorizontalScrollIndicator = false
+        collection.backgroundColor = .pageBack
+        collection.delegate = self
+        collection.dataSource = self
+        return collection
+    }()
+
     private func setupUI() {
         watchListLabel.top(view.safeAreaLayoutGuide.topAnchor, -24).0
             .leading(view.leadingAnchor, 24).0
@@ -52,6 +66,28 @@ class WatchListController: UIViewController {
             .centerY(view.centerYAnchor).0
             .width(252).0
             .height(190)
-    }
 
+        emptyImage.isHidden = true
+
+        collectionView.top(watchListLabel.bottomAnchor, 24).0
+            .leading(view.leadingAnchor, 24).0
+            .trailing(view.trailingAnchor, -24).0
+            .bottom(view.safeAreaLayoutGuide.bottomAnchor, -24)
+    }
+}
+
+extension WatchListController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        movieDetailsList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! WatchListCell
+        let cellData = movieDetailsList[indexPath.item]
+        cell.configureData(imageName: cellData.posterFullPath,
+                           name: cellData.title,
+                           rate: cellData.voteAverage,
+                           date: cellData.releaseDate)
+        return cell
+    }
 }
