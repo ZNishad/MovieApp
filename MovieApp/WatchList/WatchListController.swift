@@ -9,7 +9,7 @@ import UIKit
 
 class WatchListController: UIViewController {
 
-    private let movieDetailsList: [MovieDetailsModel] = []
+    private var movieDetailsList: [MovieDetailsModel] = []
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -17,6 +17,7 @@ class WatchListController: UIViewController {
             title: "Watch List",
             image: .watchListIcon.resizeImage(newWidth: 24),
             selectedImage: .watchListIcon.resizeImage(newWidth: 24))
+        observeModel()
     }
 
     required init?(coder: NSCoder) {
@@ -26,8 +27,10 @@ class WatchListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .pageBack
-        view.addSubviews(emptyImage, watchListLabel, collectionView)
+        view.addSubviews(watchListLabel, collectionView, emptyImage)
         setupUI()
+        loadMovieDetailsList()
+        emptyImage.isHidden = !movieDetailsList.isEmpty
     }
 
     private lazy var watchListLabel: UILabel = {
@@ -53,6 +56,7 @@ class WatchListController: UIViewController {
         collection.backgroundColor = .pageBack
         collection.delegate = self
         collection.dataSource = self
+        collection.showsVerticalScrollIndicator = false
         return collection
     }()
 
@@ -67,20 +71,73 @@ class WatchListController: UIViewController {
             .width(252).0
             .height(190)
 
-        emptyImage.isHidden = true
-
         collectionView.top(watchListLabel.bottomAnchor, 24).0
             .leading(view.leadingAnchor, 24).0
             .trailing(view.trailingAnchor, -24).0
-            .bottom(view.safeAreaLayoutGuide.bottomAnchor, -24)
+            .bottom(view.safeAreaLayoutGuide.bottomAnchor)
     }
+
+    func saveMovieDetailsList() {
+        guard !movieDetailsList.isEmpty else {
+            UserDefaults.standard.removeObject(forKey: "movieDetailsList")
+            return
+        }
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(movieDetailsList)
+            UserDefaults.standard.set(data, forKey: "movieDetailsList")
+        } catch {
+            print("Failed to save movie details: \(error)")
+        }
+    }
+
+    func loadMovieDetailsList() {
+        if let data = UserDefaults.standard.data(forKey: "movieDetailsList") {
+            let decoder = JSONDecoder()
+            do {
+                let savedMovies = try decoder.decode([MovieDetailsModel].self, from: data)
+                self.movieDetailsList = savedMovies
+            } catch {
+                print("Failed to load movie details: \(error)")
+            }
+        } else {
+            self.movieDetailsList = []
+        }
+    }
+
+    @objc private func observeModel() {
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(handleMovieAdded(_ :)),
+            name: .movieAdded, object: nil)
+    }
+
+    @objc func handleMovieAdded(_ notification: Notification) {
+        DispatchQueue.main.async {
+            print("Handle")
+            guard let movieModel = notification.userInfo?["movieModel"] as? MovieDetailsModel else { return }
+            if let index = self.movieDetailsList.firstIndex(where: { $0.id == movieModel.id }) {
+                self.movieDetailsList.remove(at: index)
+                print("DoneDelete")
+                self.saveMovieDetailsList()
+            } else {
+                self.movieDetailsList.append(movieModel)
+                print("DoneAppend")
+                self.saveMovieDetailsList()
+            }
+        }
+        collectionView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            self.emptyImage.isHidden = !self.movieDetailsList.isEmpty
+        })
+    }
+
 }
 
 extension WatchListController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         movieDetailsList.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! WatchListCell
         let cellData = movieDetailsList[indexPath.item]
@@ -89,5 +146,20 @@ extension WatchListController: UICollectionViewDelegateFlowLayout, UICollectionV
                            rate: cellData.voteAverage,
                            date: cellData.releaseDate)
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = view.frame.width * 0.7638
+        return CGSize(width: cellWidth, height: cellWidth * 0.39)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        24
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let modelId = movieDetailsList[indexPath.item].id else { return }
+        let controller = MovieDetailsController(viewModelId: modelId)
+        navigationController?.show(controller, sender: nil)
     }
 }

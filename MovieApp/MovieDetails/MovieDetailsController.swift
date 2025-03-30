@@ -41,6 +41,7 @@ class MovieDetailsController: UIViewController {
     private lazy var watchListButton: UIButton = {
         let button = UIButton()
         button.setImage(.watchListAdded, for: .normal)
+        button.addTarget(self, action: #selector(watchList), for: .touchUpInside)
         return button
     }()
 
@@ -289,4 +290,15 @@ class MovieDetailsController: UIViewController {
         guard movieId > 0 else { return }
         presentPanModal(RateController(viewModelId: movieId))
     }
+
+    @objc private func watchList() {
+        DispatchQueue.main.async {
+            guard let movieModel = self.viewModel.movieDetails else { return }
+            NotificationCenter.default.post(name: .movieAdded, object: nil,userInfo: ["movieModel": movieModel])
+        }
+    }
+}
+
+extension Notification.Name {
+    static let movieAdded = Notification.Name("movieAdded")
 }
