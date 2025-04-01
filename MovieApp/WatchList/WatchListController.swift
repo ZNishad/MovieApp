@@ -112,17 +112,15 @@ class WatchListController: UIViewController {
     }
 
     @objc func handleMovieAdded(_ notification: Notification) {
-        DispatchQueue.main.async {
-            guard let movieModel = notification.userInfo?["movieModel"] as? MovieDetailsModel else { return }
-            if let index = self.movieDetailsList.firstIndex(where: { $0.id == movieModel.id }) {
-                self.movieDetailsList.remove(at: index)
-                self.saveMovieDetailsList()
-                self.showMessage(title: "Movie Removed", message: "")
-            } else {
-                self.movieDetailsList.append(movieModel)
-                self.saveMovieDetailsList()
-                self.showMessage(title: "MovieAdded", message: "")
-            }
+        guard let movieModel = notification.userInfo?["movieModel"] as? MovieDetailsModel else { return }
+        if let index = self.movieDetailsList.firstIndex(where: { $0.id == movieModel.id }) {
+            self.movieDetailsList.remove(at: index)
+            self.saveMovieDetailsList()
+            self.showMessage(title: "Movie Removed", message: "")
+        } else {
+            self.movieDetailsList.append(movieModel)
+            self.saveMovieDetailsList()
+            self.showMessage(title: "MovieAdded", message: "")
         }
         collectionView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {

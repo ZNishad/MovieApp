@@ -292,10 +292,9 @@ class MovieDetailsController: UIViewController {
     }
 
     @objc private func watchList() {
-        DispatchQueue.main.async {
-            guard let movieModel = self.viewModel.movieDetails else { return }
-            NotificationCenter.default.post(name: .movieAdded, object: nil,userInfo: ["movieModel": movieModel])
-        }
+        guard let movieModel = self.viewModel.movieDetails else { return }
+        NotificationCenter.default.post(name: .movieAdded, object: nil,userInfo: ["movieModel": movieModel])
+
     }
 }
 
