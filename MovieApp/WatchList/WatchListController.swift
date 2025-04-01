@@ -30,7 +30,7 @@ class WatchListController: UIViewController {
         view.addSubviews(watchListLabel, collectionView, emptyImage)
         setupUI()
         loadMovieDetailsList()
-        emptyImage.isHidden = !movieDetailsList.isEmpty
+        hideEmptyImage()
     }
 
     private lazy var watchListLabel: UILabel = {
@@ -126,10 +126,13 @@ class WatchListController: UIViewController {
         }
         collectionView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            self.emptyImage.isHidden = !self.movieDetailsList.isEmpty
+            self.hideEmptyImage()
         })
     }
 
+    private func hideEmptyImage() {
+        emptyImage.isHidden = !self.movieDetailsList.isEmpty
+    }
 }
 
 extension WatchListController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
