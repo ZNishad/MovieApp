@@ -46,7 +46,8 @@ class HomeViewModel {
             switch response {
             case .success(let model):
                 self.page = model.page ?? 0
-                self.movieList = Array((model.results ?? []).prefix(5))
+                let movies = Array((model.results ?? []).prefix(5))
+                self.movieList = movies
                 self.callback?(.reloadData)
             case .error(let model):
                 self.callback?(.error(model.errorMessage))
