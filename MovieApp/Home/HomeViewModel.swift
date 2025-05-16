@@ -24,16 +24,6 @@ class HomeViewModel {
 
     var callback: ((ViewState) -> Void)?
 
-//    private var coordinator: HomeCoordinator?
-//
-//    init(coordinator: HomeCoordinator?) {
-//        self.coordinator = coordinator
-//    }
-//
-//    func didSelectMovie(index: Int) {
-//        coordinator?.showMovieDetailsController(model: movieList[index])
-//    }
-
     func getMovieModel(index: Int) -> MovieModel? {
         movieList[index]
     }

@@ -15,7 +15,7 @@ class NetworkManager {
     private init() { }
 
     func request<T>(model: NetworkRequestModel, completion: @escaping (NetworkResponse<T>) -> Void) {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global().async {
             guard let urlRequest = self.getUrlRequest(model: model) else { return }
             URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, response, error in
                 let httpResponse = response as? HTTPURLResponse
