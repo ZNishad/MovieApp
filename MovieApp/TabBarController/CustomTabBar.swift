@@ -8,12 +8,9 @@ class CustomTabBar: UITabBar {
         isTranslucent = false
         backgroundColor = .pageBack
     }
-
+    
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        addSubview(topLine)
-        isTranslucent = false
-        backgroundColor = .pageBack
+        fatalError("init(coder:) has not been implemented")
     }
 
     private let topLine: UIView = {

@@ -56,7 +56,7 @@ class WatchListController: UIViewController {
         collection.backgroundColor = .pageBack
         collection.delegate = self
         collection.dataSource = self
-        collection.showsVerticalScrollIndicator = false
+        collection.showsVerticalScrollIndicator = false 
         return collection
     }()
 
