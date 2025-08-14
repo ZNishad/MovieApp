@@ -131,6 +131,10 @@ class WatchListController: UIViewController {
     private func hideEmptyImage() {
         emptyImage.isHidden = !self.movieDetailsList.isEmpty
     }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 extension WatchListController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
