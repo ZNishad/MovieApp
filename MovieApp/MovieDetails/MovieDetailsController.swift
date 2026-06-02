@@ -293,8 +293,7 @@ class MovieDetailsController: UIViewController {
 
     @objc private func watchList() {
         guard let movieModel = self.viewModel.movieDetails else { return }
-        NotificationCenter.default.post(name: .movieAdded, object: nil,userInfo: ["movieModel": movieModel])
-
+        NotificationCenter.default.post(name: .movieAdded, object: nil, userInfo: ["movieModel": movieModel])
     }
 }
 

@@ -8,7 +8,6 @@
 import Foundation
 
 class RateViewModel {
-    var movieDetails: MovieDetailsModel?
 
     enum ViewState {
         case loading

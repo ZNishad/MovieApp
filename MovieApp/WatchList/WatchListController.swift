@@ -18,6 +18,7 @@ class WatchListController: UIViewController {
             image: .watchListIcon.resizeImage(newWidth: 24),
             selectedImage: .watchListIcon.resizeImage(newWidth: 24))
         observeModel()
+
     }
 
     required init?(coder: NSCoder) {
@@ -31,6 +32,7 @@ class WatchListController: UIViewController {
         setupUI()
         loadMovieDetailsList()
         hideEmptyImage()
+
     }
 
     private lazy var watchListLabel: UILabel = {

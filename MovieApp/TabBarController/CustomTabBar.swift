@@ -24,8 +24,8 @@ class CustomTabBar: UITabBar {
         backgroundColor = .pageBack
 
         var newFrame = frame
-        newFrame.size.height = 100
-        newFrame.origin.y = (superview?.frame.height ?? 0) - 100
+        newFrame.size.height = 80
+        newFrame.origin.y = (superview?.frame.height ?? 0) - 80
         frame = newFrame
 
         topLine.frame = CGRect(x: 0, y: 0, width: frame.width, height: 1)
@@ -33,7 +33,7 @@ class CustomTabBar: UITabBar {
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var newSize = super.sizeThatFits(size)
-        newSize.height = 100
+        newSize.height = 80
         return newSize
     }
 }
